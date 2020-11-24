@@ -5,15 +5,17 @@ console.log (products);
 const productsController = {
     create: function(req, res, next) {
         return res.render('createproduct');
-      },
-      store: function (req, res, next){
+    },
+    store:  function (req, res, next){
         products.push (req.body);
         fs.writeFileSync (__dirname + "/../database/products.json", JSON.stringify(products, null, 2));
-        return res.send ("Producto " +req.body.name + " cargado")
-      },
-      edit: function (req, res, next){
+        return res.send ("Producto " +req.body.name + " cargado");
+    },
+
+    edit: function (req, res, next){
         let productToEdit;
-        for (let i=0 ; i<= products.length ; i++) {
+        let products = JSON.parse (fs.readFileSync (__dirname + "/../database/products.json"));
+        for (let i=0 ; i< products.length ; i++) {
           if(products[i].id == req.params.id){
             productToEdit = products[i];
             break;
@@ -26,15 +28,24 @@ const productsController = {
         }
       },
       editedproduct: function (req, res, next){
-        for (let i = 0; i < products.length; i++) {
-          if (products[i].id == req.body.id){
-            products[i] = req.body;
-          }
+        let idParaRuta = req.params.id;
+      let productEdit = products.map (function (product){
+        if(product.id == req.params.id){
+          return req.body;
         }
-        // Revisar
-        products.push (req.body);
-        fs.writeFileSync (__dirname + "/../database/products.json", JSON.stringify(products, null, 2));
-        return res.redirect ("/products/edit/:id")
+        return product;
+      });
+      fs.writeFileSync (__dirname + "/../database/products.json", JSON.stringify(productEdit, null, 2));
+      res.redirect ("/products/edit/" + idParaRuta);
+      },
+      delete: function(req, res, next) {
+        let productDelete = products.filter (product =>{
+          return product.id != req.params.id
+        });
+        fs.writeFileSync (__dirname + "/../database/products.json", JSON.stringify(productDelete, null, 2));
+        res.send ("El producto fue eliminado");
+      },
 
 }
-// module.exports = productsController;
+
+module.exports = productsController;

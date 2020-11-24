@@ -7,25 +7,25 @@
 </head>
 <body>
     <h1>Edite el producto <%= productToEdit.Id %> </h1>
-    <form action="/products/edit" method="POST">
-        <input type="hidden" name="id" value= <%= productToEdit.id %> >
+    <form action="/products/edit/<%=productToEdit.id %>" method="POST">
+        <input type="hidden" name="id" value= "<%= productToEdit.id %>" >
         <br>
         Nombre:
-        <input type="text" name="name" placeholder="Ingrese un nombre" value=<%= productToEdit.name %>  >
+        <input type="text" name="name" placeholder="Ingrese un nombre" value="<%= productToEdit.name %>">
         <br>
         Precio:
-        <input type="number" name="price" placeholder="Precio" value=<%= productToEdit.price %>>
+        <input type="number" name="price" placeholder="Precio" value="<%= productToEdit.price %>">
         <br>
         Descripcion:
-        <input type="text" name="description" placeholder="Ingrese descripcion" value=<%= productToEdit.description %>>
+        <input type="text" name="description" placeholder="Ingrese descripcion" value="<%= productToEdit.description %>">
         <br>
         Marca:
-        <input type="text" name="brand"  placeholder="Marca" value=<%= productToEdit.brand %>>
+        <input type="text" name="brand"  placeholder="Marca" value="<%= productToEdit.brand %>">
         <br>
         Stock:
-        <input type="number" name="stock" placeholder="Stock" value=<%= productToEdit.stock %>>
+        <input type="number" name="stock" placeholder="Stock" value="<%= productToEdit.stock %>">
         <br>
-        <button type="submit">Guardar</button>
+        <button type="submit">Editar</button>
 
     </form>
 </body>
