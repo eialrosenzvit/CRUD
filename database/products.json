@@ -1,0 +1,10 @@
+[
+     {
+    "id": "5",
+    "name": "Remera",
+    "price": "500",
+    "description": "Remera blanca",
+    "brand": "Nike",
+    "stock": "3"
+  }
+]

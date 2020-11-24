@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edite su producto</title>
+</head>
+<body>
+    <h1>Edite el producto <%= productToEdit.Id %> </h1>
+    <form action="/products/edit" method="POST">
+        <input type="hidden" name="id" value= <%= productToEdit.id %> >
+        <br>
+        Nombre:
+        <input type="text" name="name" placeholder="Ingrese un nombre" value=<%= productToEdit.name %>  >
+        <br>
+        Precio:
+        <input type="number" name="price" placeholder="Precio" value=<%= productToEdit.price %>>
+        <br>
+        Descripcion:
+        <input type="text" name="description" placeholder="Ingrese descripcion" value=<%= productToEdit.description %>>
+        <br>
+        Marca:
+        <input type="text" name="brand"  placeholder="Marca" value=<%= productToEdit.brand %>>
+        <br>
+        Stock:
+        <input type="number" name="stock" placeholder="Stock" value=<%= productToEdit.stock %>>
+        <br>
+        <button type="submit">Guardar</button>
+
+    </form>
+</body>
+</html>
